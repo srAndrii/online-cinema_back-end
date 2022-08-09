@@ -51,14 +51,17 @@ export class AuthService {
             throw new BadRequestException('User with this email is already in the system')
         }
         const salt = await genSalt(10)
+
         const newUser = new this.UserModel({
             email:dto.email,
             password:await hash(dto.password, salt)
         })
 
-        const tokens = await this.issueTokenPair(String(newUser._id))
+        const user = await newUser.save()
+
+        const tokens = await this.issueTokenPair(String(user._id))
         return {
-            user:this.returnUserFields(newUser),
+            user:this.returnUserFields(user),
             ...tokens
         }
     }
@@ -68,7 +71,7 @@ export class AuthService {
         if (!user) throw new UnauthorizedException('User not found')
 
         const isValidPassword = await compare(dto.password, user.password)
-        if (!isValidPassword) throw new UnauthorizedException('Invalid passsword')
+        if (!isValidPassword) throw new UnauthorizedException('Invalid password')
 
         return user
 
