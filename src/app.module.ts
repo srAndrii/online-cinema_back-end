@@ -8,6 +8,8 @@ import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { GenreModule } from './genre/genre.module';
 import { FileModule } from './file/file.module';
+import { ActorModule } from './actor/actor.module';
+import { MovieModule } from './movie/movie.module';
 
 @Module({
   imports: [
@@ -20,7 +22,9 @@ import { FileModule } from './file/file.module';
       AuthModule,
       UserModule,
       GenreModule,
-      FileModule
+      FileModule,
+      ActorModule,
+      MovieModule
   ],
   controllers: [AppController],
   providers: [AppService],
