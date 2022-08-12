@@ -16,6 +16,7 @@ import {IdValidationPipe} from "../pipes/id.validation.pipe";
 import {MovieService} from "./movie.service";
 import {Types} from "mongoose";
 import {UpdateMovieDto} from "./update-movie.dto";
+import {GenreIdsDto} from "../genre/dto/genreIds.dto";
 
 @Controller('movies')
 export class MovieController {
@@ -36,7 +37,7 @@ export class MovieController {
     @UsePipes(new ValidationPipe())
     @Post('/by-genres')
     @HttpCode(200)
-    async byGenres(@Body('genreIds') genreIds:Types.ObjectId[]){
+    async byGenres(@Body() {genreIds}: GenreIdsDto ){
         return this.MovieService.byGenres(genreIds)
     }
 
