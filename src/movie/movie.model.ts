@@ -1,6 +1,5 @@
 import {Base, TimeStamps} from "@typegoose/typegoose/lib/defaultClasses";
 import {prop, Ref} from "@typegoose/typegoose";
-import {IsArray, IsBoolean, IsNumber, IsString} from "class-validator";
 import {ActorModel} from "../actor/actor.model";
 import {GenreModel} from "../genre/genre.model";
 
@@ -22,16 +21,13 @@ export class MovieModel extends TimeStamps{
     poster:string
 
     @prop()
-    title:string
+    bigPoster:string
 
     @prop()
-    description:string
+    title:string
 
     @prop({unique:true})
     slug:string
-
-    @prop()
-    bigPoster:string
 
     @prop()
     parameters?:Parameters
@@ -40,7 +36,7 @@ export class MovieModel extends TimeStamps{
     rating?:number
 
     @prop({default:0})
-    countOpend?:number
+    countOpened?:number
 
     @prop()
     videoUrl:string
