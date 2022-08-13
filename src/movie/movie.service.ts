@@ -72,6 +72,15 @@ export class MovieService {
 
     }
 
+    async  updateRating(id:Types.ObjectId, newRating:number){
+        return this.MovieModel.findByIdAndUpdate(id,
+            {
+                rating:newRating
+            },{
+                new:true
+            }).exec()
+    }
+
 
 
     /*Admin place*/
