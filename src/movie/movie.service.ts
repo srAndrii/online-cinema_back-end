@@ -10,9 +10,6 @@ export class MovieService {
     constructor(@InjectModel(MovieModel) private readonly MovieModel:ModelType<MovieModel>) {
     }
 
-
-
-
     async getAll(searchTerm?:string){
         let options = {}
         if(searchTerm){
@@ -87,7 +84,7 @@ export class MovieService {
 
     async byId(_id:string){
         const movie = await this.MovieModel.findById(_id)
-        if (!movie) throw new NotFoundException('Actor not found')
+        if (!movie) throw new NotFoundException('Movie not found')
         return movie
     }
 
@@ -112,14 +109,14 @@ export class MovieService {
             new:true
         }).exec()
 
-        if(!updateMovie) throw new NotFoundException('Actor not found')
+        if(!updateMovie) throw new NotFoundException('Movie not found')
         return updateMovie
     }
 
     async delete(id:string){
         const deleteMovie = await this.MovieModel.findByIdAndDelete(id).exec()
 
-        if(!deleteMovie) throw new NotFoundException('Actor not found')
+        if(!deleteMovie) throw new NotFoundException('Movie not found')
 
         return deleteMovie
     }
